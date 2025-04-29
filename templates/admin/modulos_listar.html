@@ -1,0 +1,43 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Gerenciar Módulos - Portal Educativo{% endblock %}
+
+{% block content %}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h1>Gerenciar Módulos</h1>
+        <a href="{{ url_for("admin.adicionar_modulo") }}" style="background-color: #28a745; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px;">Adicionar Novo Módulo</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if modulos %}
+                {% for modulo in modulos %}
+                    <tr>
+                        <td>{{ modulo.id }}</td>
+                        <td>{{ modulo.titulo }}</td>
+                        <td>{{ modulo.descricao | truncate(100) }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for("admin.editar_modulo", id=modulo.id) }}" class="edit-btn">Editar</a>
+                            <form action="{{ url_for("admin.excluir_modulo", id=modulo.id) }}" method="POST" style="display: inline;" onsubmit="return confirm("Tem certeza que deseja excluir este módulo? Todas as aulas associadas também serão excluídas.");">
+                                <button type="submit" class="delete-btn">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Nenhum módulo encontrado.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
+

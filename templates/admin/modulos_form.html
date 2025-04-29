@@ -1,0 +1,24 @@
+{% extends "admin/base_admin.html" %}
+
+{% set page_title = "Adicionar Módulo" if not modulo else "Editar Módulo" %}
+{% block title %}{{ page_title }} - Portal Educativo{% endblock %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+
+    <form method="POST" action="{{ form_action }}">
+        <div class="form-group">
+            <label for="titulo">Título do Módulo:</label>
+            <input type="text" id="titulo" name="titulo" value="{{ modulo.titulo if modulo else "" }}" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4">{{ modulo.descricao if modulo else "" }}</textarea>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Salvar Módulo</button>
+            <a href="{{ url_for("admin.listar_modulos") }}" style="margin-left: 1rem; color: #6c757d; text-decoration: none;">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}
+

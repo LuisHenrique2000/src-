@@ -1,0 +1,26 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Dashboard - Portal Educativo{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Bem-vindo(a) ao painel administrativo do Portal Educativo – Receitas Sem Fogo.</p>
+
+    <div class="dashboard-stats" style="display: flex; gap: 1rem; margin-top: 2rem;">
+        <div class="stat-card" style="border: 1px solid #eee; padding: 1rem; border-radius: 8px; text-align: center; flex: 1;">
+            <h2>Módulos</h2>
+            <p style="font-size: 2em; margin: 0.5rem 0;">0</p> <!-- Placeholder -->
+        </div>
+        <div class="stat-card" style="border: 1px solid #eee; padding: 1rem; border-radius: 8px; text-align: center; flex: 1;">
+            <h2>Aulas</h2>
+            <p style="font-size: 2em; margin: 0.5rem 0;">0</p> <!-- Placeholder -->
+        </div>
+        <div class="stat-card" style="border: 1px solid #eee; padding: 1rem; border-radius: 8px; text-align: center; flex: 1;">
+            <h2>Comentários</h2>
+            <p style="font-size: 2em; margin: 0.5rem 0;">0</p> <!-- Placeholder -->
+        </div>
+    </div>
+
+    <p style="margin-top: 2rem;">Use o menu acima para gerenciar os módulos, aulas e comentários.</p>
+{% endblock %}
+

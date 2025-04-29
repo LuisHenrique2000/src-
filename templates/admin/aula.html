@@ -1,0 +1,65 @@
+{% extends "public/base_public.html" %}
+
+{% block title %}{{ aula.titulo }} - Receitas Sem Fogo{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for("public.ver_modulo", id=aula.modulo_id) }}" style="display: inline-block; margin-bottom: 1.5rem; color: #6c757d; text-decoration: none;">&larr; Voltar para Aulas do Módulo</a>
+
+    <h2 style="margin-top: 0; margin-bottom: 0.5rem; color: #993F4D;">{{ aula.titulo }}</h2>
+    {% if aula.duracao %}
+        <p style="font-size: 0.9em; color: #777; margin-top: 0; margin-bottom: 1.5rem;">Duração: {{ aula.duracao }}</p>
+    {% endif %}
+
+    <!-- Container do Vídeo Responsivo -->
+    <div class="video-container" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0; overflow: hidden; max-width: 100%; background: #eee; margin-bottom: 1.5rem; border-radius: 5px;">
+        {% if aula.link_video and "youtube.com/embed" in aula.link_video %}
+            <iframe src="{{ aula.link_video }}" title="Vídeo da Aula" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        {% elif aula.link_video %}
+            <p style="padding: 2rem; text-align: center;">Link de vídeo inválido ou não suportado. Use o formato de incorporação (embed) do YouTube.</p>
+        {% else %}
+             <p style="padding: 2rem; text-align: center;">Vídeo não disponível.</p>
+        {% endif %}
+    </div>
+
+    <!-- Descrição da Aula -->
+    {% if aula.descricao %}
+        <div class="aula-descricao" style="margin-bottom: 2rem; padding: 1rem; background-color: #ffffff; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+            <h3 style="margin-top: 0; margin-bottom: 0.5rem;">Sobre esta aula:</h3>
+            <p>{{ aula.descricao | safe }}</p> <!-- Usar safe se a descrição puder conter HTML básico -->
+        </div>
+    {% endif %}
+
+    <!-- Seção de Comentários -->
+    <div class="comentarios-secao" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+        <h3 style="margin-bottom: 1.5rem;">Comentários</h3>
+
+        <!-- Formulário para Novo Comentário -->
+        <form method="POST" action="{{ url_for("public.ver_aula", id=aula.id) }}" style="margin-bottom: 2rem; background-color: #ffffff; padding: 1.5rem; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+            <h4 style="margin-top: 0; margin-bottom: 1rem;">Deixe seu comentário:</h4>
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="nome_aluno" style="display: block; margin-bottom: 0.3rem; font-weight: bold;">Seu Nome:</label>
+                <input type="text" id="nome_aluno" name="nome_aluno" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="mensagem" style="display: block; margin-bottom: 0.3rem; font-weight: bold;">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"></textarea>
+            </div>
+            <button type="submit" style="padding: 0.7rem 1.5rem; background-color: #E37C77; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">Enviar Comentário</button>
+        </form>
+
+        <!-- Lista de Comentários Existentes -->
+        {% if aula.comentarios %}
+            <div class="comentarios-lista-publica">
+                {% for comentario in aula.comentarios %}
+                    <div class="comentario-item-publico" style="border-bottom: 1px solid #eee; padding: 1rem 0;">
+                        <p style="margin: 0 0 0.3rem 0;"><strong>{{ comentario.nome_aluno }}</strong> <span style="font-size: 0.8em; color: #777;">em {{ comentario.data_criacao.strftime("%d/%m/%Y") if comentario.data_criacao else "" }}</span></p>
+                        <p style="margin: 0;">{{ comentario.mensagem }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Ainda não há comentários para esta aula. Seja o primeiro a comentar!</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

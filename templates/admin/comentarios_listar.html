@@ -1,0 +1,32 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Visualizar Comentários - Portal Educativo{% endblock %}
+
+{% block content %}
+    <h1>Visualizar Comentários</h1>
+
+    {% if comentarios %}
+        <div class="comentarios-lista" style="margin-top: 1.5rem;">
+            {% for comentario in comentarios %}
+                <div class="comentario-item" style="border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; background-color: #fdfdfd;">
+                    <p><strong>Aula:</strong> {{ comentario.aula.titulo if comentario.aula else "N/A" }} (ID: {{ comentario.aula_id }})</p>
+                    <p><strong>Aluno:</strong> {{ comentario.nome_aluno }}</p>
+                    <p><strong>Data:</strong> {{ comentario.data_criacao.strftime("%d/%m/%Y %H:%M") if comentario.data_criacao else "N/A" }}</p>
+                    <p><strong>Mensagem:</strong></p>
+                    <blockquote style="margin-left: 1rem; padding-left: 1rem; border-left: 3px solid #ccc; font-style: italic;">
+                        {{ comentario.mensagem }}
+                    </blockquote>
+                    <!-- Adicionar botão de excluir comentário se necessário no futuro -->
+                    <!--
+                    <form action="#" method="POST" style="margin-top: 0.5rem;" onsubmit="return confirm("Tem certeza que deseja excluir este comentário?");">
+                        <button type="submit" class="delete-btn" style="font-size: 0.8em; padding: 3px 8px;">Excluir</button>
+                    </form>
+                    -->
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="margin-top: 1.5rem;">Nenhum comentário encontrado.</p>
+    {% endif %}
+{% endblock %}
+

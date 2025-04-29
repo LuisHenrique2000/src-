@@ -1,0 +1,31 @@
+{% extends "public/base_public.html" %}
+
+{% block title %}{{ modulo.titulo }} - Receitas Sem Fogo{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for("public.index") }}" style="display: inline-block; margin-bottom: 1.5rem; color: #6c757d; text-decoration: none;">&larr; Voltar para Módulos</a>
+    <h2 style="margin-top: 0; margin-bottom: 1rem; color: #993F4D;">{{ modulo.titulo }}</h2>
+    <!-- Adicionar descrição do módulo se houver -->
+    <!-- <p>{{ modulo.descricao }}</p> -->
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Aulas do Módulo</h3>
+
+    {% if modulo.aulas %}
+        <ul class="aulas-lista-publica" style="list-style: none; padding: 0;">
+            {% for aula in modulo.aulas %}
+                <li style="margin-bottom: 1rem; background-color: #ffffff; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-weight: bold;">{{ aula.titulo }}</span>
+                        {% if aula.duracao %}
+                            <span style="font-size: 0.9em; color: #777; margin-left: 0.5rem;">({{ aula.duracao }})</span>
+                        {% endif %}
+                    </div>
+                    <a href="{{ url_for("public.ver_aula", id=aula.id) }}" style="background-color: #E37C77; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; font-size: 0.9em;">Assistir</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma aula encontrada para este módulo.</p>
+    {% endif %}
+{% endblock %}
+

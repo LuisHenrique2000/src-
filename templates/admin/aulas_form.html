@@ -1,0 +1,41 @@
+{% extends "admin/base_admin.html" %}
+
+{% set page_title = "Adicionar Aula" if not aula else "Editar Aula" %}
+{% block title %}{{ page_title }} - Portal Educativo{% endblock %}
+
+{% block content %}
+    <h1>{{ page_title }}</h1>
+
+    <form method="POST" action="{{ form_action }}">
+        <div class="form-group">
+            <label for="modulo_id">Módulo:</label>
+            <select id="modulo_id" name="modulo_id" required>
+                <option value="">Selecione um Módulo</option>
+                {% for mod in modulos %}
+                    <option value="{{ mod.id }}" {{ "selected" if aula and aula.modulo_id == mod.id }}>{{ mod.titulo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="titulo">Título da Aula:</label>
+            <input type="text" id="titulo" name="titulo" value="{{ aula.titulo if aula else "" }}" required>
+        </div>
+        <div class="form-group">
+            <label for="duracao">Duração (ex: 15 min):</label>
+            <input type="text" id="duracao" name="duracao" value="{{ aula.duracao if aula else "" }}">
+        </div>
+        <div class="form-group">
+            <label for="link_video">Link do Vídeo (URL completa):</label>
+            <input type="url" id="link_video" name="link_video" value="{{ aula.link_video if aula else "" }}" required placeholder="https://www.youtube.com/embed/...">
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="6">{{ aula.descricao if aula else "" }}</textarea>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Salvar Aula</button>
+            <a href="{{ url_for("admin.listar_aulas") }}" style="margin-left: 1rem; color: #6c757d; text-decoration: none;">Cancelar</a>
+        </div>
+    </form>
+{% endblock %}
+

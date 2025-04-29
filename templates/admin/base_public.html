@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Receitas Sem Fogo{% endblock %}</title>
+    <!-- Link para CSS (será criado depois) -->
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/public_style.css") }}">
+    <style>
+        /* Estilos básicos inline para começar - serão movidos para public_style.css */
+        body { font-family: sans-serif; margin: 0; background-color: #FFF5F7; /* Rosé Claro */ color: #333; line-height: 1.6; }
+        .public-header { background-color: #ffffff; padding: 1rem; text-align: center; border-bottom: 1px solid #FADAE0; margin-bottom: 1.5rem; }
+        .public-header h1 { margin: 0; color: #993F4D; /* Vinho Suave */ font-size: 1.8em; }
+        /* Adicionar logo aqui se necessário */
+        .public-container { max-width: 800px; margin: 0 auto; padding: 0 1rem 2rem 1rem; }
+        .flash-messages { list-style: none; padding: 0; margin-bottom: 1rem; }
+        .flash-messages li { padding: 0.8rem; margin-bottom: 0.5rem; border-radius: 4px; }
+        .flash-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .flash-warning { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        footer { text-align: center; margin-top: 2rem; padding: 1rem; font-size: 0.9em; color: #777; border-top: 1px solid #eee; background-color: #fdfdfd; }
+    </style>
+</head>
+<body>
+    <header class="public-header">
+        <!-- Logo pode ir aqui -->
+        <h1>Receitas Sem Fogo</h1>
+    </header>
+
+    <main class="public-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="flash-{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("%Y") }} Receitas Sem Fogo. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Link para JS público (se necessário) -->
+    <!-- <script src="{{ url_for("static", filename="js/public_script.js") }}"></script> -->
+</body>
+</html>
