@@ -1,0 +1,273 @@
+/* Estilos Gerais - Painel Administrativo */
+body {
+    font-family: 'Lato', Arial, sans-serif; /* Fonte moderna */
+    margin: 0;
+    background-color: #FFF5F7; /* Rosé Claro */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Navegação */
+nav {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #FADAE0; /* Borda Rosé Suave */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #993F4D; /* Vinho Suave */
+}
+
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Mensagens Flash */
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.flash-messages li {
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.flash-success {
+    background-color: #e9f7ec;
+    color: #1d643b;
+    border-color: #c3e6cb;
+}
+
+.flash-danger {
+    background-color: #fdecea;
+    color: #842029;
+    border-color: #f5c6cb;
+}
+
+.flash-warning {
+    background-color: #fff9e3;
+    color: #856404;
+    border-color: #ffeeba;
+}
+
+.flash-info {
+    background-color: #e7f3fe;
+    color: #0c5460;
+    border-color: #bee5eb;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #993F4D; /* Vinho Suave */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.2em; color: #444; margin-bottom: 1rem; }
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.95em;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fdfdfd;
+}
+
+/* Ações na Tabela */
+.actions a,
+.actions button {
+    margin-right: 5px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.actions a:hover,
+.actions button:hover {
+    opacity: 0.85;
+}
+
+.actions .edit-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.actions .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #E37C77; /* Rosa Queimado */
+    outline: none;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.form-actions button {
+    padding: 0.8rem 1.8rem;
+    background-color: #E37C77; /* Rosa Queimado */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.form-actions button:hover {
+    background-color: #D16A63; /* Tom mais escuro */
+}
+
+.form-actions a {
+    margin-left: 1rem;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    border: 1px solid #FADAE0; /* Borda Rosé Suave */
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fff9fa;
+}
+
+.stat-card h2 {
+    font-size: 1.1em;
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+.stat-card p {
+    font-size: 2.2em;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #993F4D; /* Vinho Suave */
+}
+
+/* Comentários Listar */
+.comentario-item {
+    border: 1px solid #eee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+}
+
+.comentario-item p {
+    margin: 0.3rem 0;
+}
+
+.comentario-item blockquote {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 3px solid #ccc;
+    font-style: italic;
+    color: #555;
+    margin-top: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    .container { margin: 1rem; padding: 1rem; }
+    nav ul { gap: 1rem; flex-wrap: wrap; }
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.4em; }
+    th, td { padding: 0.6rem; }
+    .actions a, .actions button { padding: 5px 8px; font-size: 0.8em; }
+    .form-actions button { padding: 0.7rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    nav ul { justify-content: center; }
+    .dashboard-stats { grid-template-columns: 1fr; }
+}
+
